@@ -23,9 +23,15 @@ Feature: Histórico de notificações de pendência de notas
       Then são apresentados o professor "Ana Silva", a disciplina "Engenharia de Requisitos" e o status "Falha"
       And o motivo apresentado é "Pendência no lançamento de notas" 
 
-      Scenario: Ausência de novo registro após cadastro das notas pendentes
+   Scenario: Ausência de novo registro após cadastro das notas pendentes
       Given a última notificação de "Paulo Borba" foi registrada em "27/08/2026 às 09:00"
       And todas as notas da turma "2026.2 de ESS" foram cadastradas antes de "28/08/2026 às 09:00"
       When o administrador "Carlos Lima" acessa o histórico após "28/08/2026 às 09:00"
       Then a última notificação apresentada permanece sendo a de "27/08/2026 às 09:00"
       And não existe notificação registrada em "28/08/2026"
+      
+   Scenario: Lembrete apresenta todas as notas pendentes da turma
+    Given "João da Silva" está sem nota em "Prova 2"
+    And "Maria Souza" está sem nota em "Projeto 1"
+    When um lembrete de notas pendentes é enviado ao professor "Paulo Borba"
+    Then o lembrete apresenta as pendências de "João da Silva" e "Maria Souza"
