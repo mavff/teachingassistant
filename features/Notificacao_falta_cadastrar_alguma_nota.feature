@@ -30,3 +30,9 @@ Feature: Histórico de notificações de pendência de notas
       Then a última notificação apresentada permanece sendo a de "27/08/2026 às 09:00"
       And não existe notificação registrada em "28/08/2026"
       And o sistema mostra uma tela com "última notificação permanece sendo 27/08/2026 às 9:00"
+
+   Scenario: Lembrete apresenta todas as notas pendentes da turma
+    Given "João da Silva" está sem nota em "Prova 2"
+    And "Maria Souza" está sem nota em "Projeto 1"
+    When um lembrete de notas pendentes é enviado ao professor "Paulo Borba"
+    Then o lembrete apresenta as pendências de "João da Silva" e "Maria Souza"
