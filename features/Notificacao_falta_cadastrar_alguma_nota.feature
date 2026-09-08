@@ -12,4 +12,5 @@ Scenario: Visualização de falha no envio de uma notificação
    incluindo professor, data/hora, disciplina, turma e motivo.
 Scenario: Ausência de novo envio quando todas as notas já estão cadastradas
    Ideia geral: verificar se, quando chega o momento em que o sistema faria uma nova tentativa de envio, mas todas as notas dos alunos 
+   
    já foram cadastradas, nenhuma nova notificação é enviada e nenhum novo registro de envio é criado no histórico.
