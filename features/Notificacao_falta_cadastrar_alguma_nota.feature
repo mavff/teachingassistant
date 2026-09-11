@@ -36,4 +36,4 @@ Feature: Histórico de notificações de pendência de notas
       And "Maria Souza" está sem nota em "Projeto 1"
       When um lembrete de notas pendentes é enviado ao professor "Paulo Borba"
       Then o lembrete apresenta "João da Silva - Prova 2" e "Maria Souza - Projeto 1"
-      And o lembrete informa o prazo "31/08/2026 às 23:59"
+      And o lembrete informa o prazo "31/08/2026 às 23:59" possui cor "vermelha"
