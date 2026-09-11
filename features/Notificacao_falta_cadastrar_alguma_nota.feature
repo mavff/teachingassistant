@@ -35,5 +35,7 @@ Scenario: Lembrete apresenta detalhes das notas pendentes da turma
     Given "João da Silva" está sem nota em "Prova 2"
     And "Maria Souza" está sem nota em "Projeto 1"
     When um lembrete de notas pendentes é enviado ao professor "Paulo Borba"
-    Then o lembrete apresenta "João da Silva - Prova 2" e "Maria Souza - Projeto 1"
-    And o lembrete informa o prazo "31/08/2026 às 23:59" com cor "vermelha"
+   Then o lembrete apresenta "João da Silva - Prova 2" e "Maria Souza - Projeto 1"
+   And o lembrete informa o prazo "31/08/2026 às 23:59" com cor "vermelha"
+
+   # comentário teste
