@@ -39,3 +39,8 @@ Scenario: Lembrete apresenta detalhes das notas pendentes da turma
    And o lembrete informa o prazo "31/08/2026 às 23:59" com cor "vermelha"
 
    # comentário teste
+
+Scenario: Filtragem do histórico por turma
+    Given existe uma notificação de "Paulo Borba" para a turma "2026.2 de ESS" e uma de "Ana Silva" para a turma "2026.1 de ESS"
+    When o administrador "Carlos Lima" filtra pela turma "2026.2 de ESS"
+    Then é apresentada apenas a notificação de "Paulo Borba" da turma "2026.2 de ESS"
