@@ -1,0 +1,17 @@
+Feature: notificação de alocação de monitor e aluno
+
+  Como aluno ou monitor de um grupo do SGM
+  Eu quero ser notificado sempre que a composição do meu grupo mudar
+  Para que eu saiba quem são os participantes atuais do grupo sem precisar checar manualmente
+
+  Scenario: notificar grupo ao alocar monitor (serviço)
+    Given o grupo "ESS-G3" existe com os alunos "Mariana" e "Pedro" e sem monitor definido
+    When o professor aloca o monitor "joaosilva" ao grupo "ESS-G3"
+    Then o sistema envia uma notificação de alocação para "Mariana", "Pedro" e "joaosilva"
+    And o grupo "ESS-G3" passa a ter "joaosilva" como monitor
+
+  Scenario: notificar grupo ao adicionar aluno a grupo com monitor (serviço)
+    Given o grupo "ESS-G3" existe com os alunos "Mariana" e "Pedro" e o monitor "joaosilva"
+    When o professor adiciona o aluno "Carla" ao grupo "ESS-G3"
+    Then o sistema envia uma notificação de aviso para "Mariana", "Pedro", "Carla" e "joaosilva"
+    And o grupo "ESS-G3" passa a ter "Mariana", "Pedro" e "Carla" como alunos
