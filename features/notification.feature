@@ -15,3 +15,11 @@ Feature: notificação de alocação de monitor e aluno
     When o professor adiciona o aluno "Carla" ao grupo "ESS-G3"
     Then o sistema envia uma notificação de aviso para "Mariana", "Pedro", "Carla" e "joaosilva"
     And o grupo "ESS-G3" passa a ter "Mariana", "Pedro" e "Carla" como alunos
+
+  Scenario: não notificar quando alocação de monitor falha
+    Given o grupo "ESS-G3" existe com os alunos "Mariana" e "Pedro" e sem monitor definido
+    And não há nenhum monitor disponível no momento
+    When o professor tenta alocar um monitor ao grupo "ESS-G3"
+    Then o sistema exibe uma mensagem informando que não há monitor disponível
+    And nenhuma notificação é enviada
+    And o grupo "ESS-G3" continua sem monitor definido
