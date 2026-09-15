@@ -55,3 +55,11 @@ Feature: notificação de alocação de monitor e aluno
     When o professor remove o monitor "joaosilva" do grupo "ESS-G3" sem realocá-lo
     Then o sistema envia uma notificação de remoção para "Mariana" e "Pedro"
     And o grupo "ESS-G3" passa a não ter monitor definido
+    
+  Scenario: não notificar quando realocação de monitor falha
+    Given o monitor "joaosilva" está alocado ao grupo "ESS-G3"
+    And o grupo "ESS-G4" não existe no sistema
+    When o professor tenta realocar o monitor "joaosilva" do grupo "ESS-G3" para o grupo "ESS-G4"
+    Then o sistema exibe uma mensagem informando que o grupo de destino não existe
+    And nenhuma notificação é enviada
+    And o monitor "joaosilva" permanece alocado ao grupo "ESS-G3"
