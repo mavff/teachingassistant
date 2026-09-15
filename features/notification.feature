@@ -63,3 +63,9 @@ Feature: notificação de alocação de monitor e aluno
     Then o sistema exibe uma mensagem informando que o grupo de destino não existe
     And nenhuma notificação é enviada
     And o monitor "joaosilva" permanece alocado ao grupo "ESS-G3"
+
+  Scenario: notificar apenas o novo monitor quando grupo não possui alunos
+    Given o grupo "ESS-G6" existe sem nenhum aluno e sem monitor definido
+    When o professor aloca o monitor "carloseduardo" ao grupo "ESS-G6"
+    Then o sistema envia uma notificação de alocação apenas para "carloseduardo"
+    And o grupo "ESS-G6" passa a ter "carloseduardo" como monitor
