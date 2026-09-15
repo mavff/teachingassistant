@@ -47,3 +47,5 @@ Feature: notificação de alocação de monitor e aluno
     When o sistema de alocação automática é executado para o grupo "ESS-G5"
     Then o sistema aloca o monitor "mariaeduarda" ao grupo "ESS-G5"
     And o sistema envia uma notificação de alocação para "Rafael", "Julia" e "mariaeduarda"
+    And o sistema registra a alocação automática no relatório de monitores da disciplina
+    And o relatório de monitores da disciplina passa a não ter monitores livres disponíveis
