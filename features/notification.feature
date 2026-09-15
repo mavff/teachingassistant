@@ -69,3 +69,11 @@ Feature: notificação de alocação de monitor e aluno
     When o professor aloca o monitor "carloseduardo" ao grupo "ESS-G6"
     Then o sistema envia uma notificação de alocação apenas para "carloseduardo"
     And o grupo "ESS-G6" passa a ter "carloseduardo" como monitor
+
+  Scenario: notificar monitor quando é designado como responsável por múltiplos grupos
+    Given o monitor "joaosilva" já está alocado ao grupo "ESS-G3"
+    And o grupo "ESS-G7" existe sem monitor definido
+    When o professor aloca o monitor "joaosilva" também ao grupo "ESS-G7"
+    Then o sistema envia uma notificação para os alunos do grupo "ESS-G7"
+    And o sistema envia uma notificação para "joaosilva" informando o acúmulo de grupos
+    And o grupo "ESS-G3" permanece com "joaosilva" como monitor, sem alteração
