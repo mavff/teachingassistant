@@ -39,3 +39,10 @@ Feature: notificação de alocação de monitor e aluno
     And o sistema envia uma notificação de entrada para os alunos do grupo "ESS-G4"
     And o grupo "ESS-G3" passa a não ter monitor definido
     And o grupo "ESS-G4" passa a ter "joaosilva" como monitor
+
+  Scenario: alocação automática quando há apenas um monitor disponível
+    Given o grupo "ESS-G5" existe com os alunos "Rafael" e "Julia" e sem monitor definido
+    And o monitor "mariaeduarda" é o único monitor livre no momento
+    When o sistema de alocação automática é executado para o grupo "ESS-G5"
+    Then o sistema aloca o monitor "mariaeduarda" ao grupo "ESS-G5"
+    And o sistema envia uma notificação de alocação para "Rafael", "Julia" e "mariaeduarda"
