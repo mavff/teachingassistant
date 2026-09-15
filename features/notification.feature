@@ -30,3 +30,12 @@ Feature: notificação de alocação de monitor e aluno
     Then o sistema exibe uma mensagem informando que o aluno já pertence ao grupo
     And nenhuma notificação é enviada
     And o grupo "ESS-G3" mantém apenas "Mariana" e "Pedro" como alunos
+    
+  Scenario: notificar participantes na realocação de monitor entre grupos
+    Given o monitor "joaosilva" está alocado ao grupo "ESS-G3"
+    And o grupo "ESS-G4" existe com os alunos "Lucas" e "Beatriz" e sem monitor definido
+    When o professor realoca o monitor "joaosilva" do grupo "ESS-G3" para o grupo "ESS-G4"
+    Then o sistema envia uma notificação de saída para os alunos do grupo "ESS-G3"
+    And o sistema envia uma notificação de entrada para os alunos do grupo "ESS-G4"
+    And o grupo "ESS-G3" passa a não ter monitor definido
+    And o grupo "ESS-G4" passa a ter "joaosilva" como monitor
