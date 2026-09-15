@@ -49,3 +49,9 @@ Feature: notificação de alocação de monitor e aluno
     And o sistema envia uma notificação de alocação para "Rafael", "Julia" e "mariaeduarda"
     And o sistema registra a alocação automática no relatório de monitores da disciplina
     And o relatório de monitores da disciplina passa a não ter monitores livres disponíveis
+
+  Scenario: notificar alunos quando monitor é removido do grupo sem realocação
+    Given o grupo "ESS-G3" existe com os alunos "Mariana" e "Pedro" e o monitor "joaosilva"
+    When o professor remove o monitor "joaosilva" do grupo "ESS-G3" sem realocá-lo
+    Then o sistema envia uma notificação de remoção para "Mariana" e "Pedro"
+    And o grupo "ESS-G3" passa a não ter monitor definido
